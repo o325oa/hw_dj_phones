@@ -9,16 +9,16 @@ def index(request):
 def show_catalog(request):
     template = 'catalog.html'
     sort_order = request.GET.get('sort',
-                                 'name')  # Получаем параметр сортировки из GET-запроса
+                                 'name')
     if sort_order == 'min_price':
-        phones = Phone.objects.all().order_by('price')  # Сортировка по цене (по возрастанию)
+        phones = Phone.objects.all().order_by('price')
 
     elif sort_order == 'max_price':
-        phones = Phone.objects.all().order_by('-price')  # Сортировка по цене (по убыванию)
+        phones = Phone.objects.all().order_by('-price')
     elif sort_order == 'name':
-        phones = Phone.objects.all().order_by('name')  # Сортировка по названию (по возрастанию)
+        phones = Phone.objects.all().order_by('name')
     else:
-        phones = Phone.objects.all().order_by('name')  # По умолчанию сортировка по названию
+        phones = Phone.objects.all().order_by('name')
     context = {
         'phones': phones,
         'sort_order': sort_order
